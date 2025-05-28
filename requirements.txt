@@ -1,0 +1,11 @@
+pandas
+numpy
+matplotlib
+seaborn
+textblob
+nltk
+yfinance
+TA-Lib
+pynance
+jupyter
+scikit-learn
