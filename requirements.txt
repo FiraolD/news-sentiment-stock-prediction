@@ -2,10 +2,9 @@ pandas
 numpy
 matplotlib
 seaborn
-textblob
-nltk
 yfinance
-TA-Lib
-pynance
-jupyter
+scipy
+statsmodels
+nltk
+textblob
 scikit-learn
