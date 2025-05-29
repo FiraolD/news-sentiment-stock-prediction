@@ -5,6 +5,7 @@ from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.decomposition import LatentDirichletAllocation
 import nltk
 from nltk.corpus import stopwords
+from sklearn.feature_extraction.text import CountVectorizer
 import string
 import re
 import os
@@ -34,12 +35,14 @@ plt.title("Distribution of Headline Lengths")
 plt.xlabel("Length")
 plt.ylabel("Frequency")
 plt.show()
+
 #plot for Top publishers
 top_publishers = news.get_top_publishers()
 top_publishers.plot(kind='bar', title="Top Publishers", figsize=(12, 6))
 plt.xticks(rotation=45)
 plt.ylabel("Article Count")
 plt.show()
+
 #Plot for most frequent keywords in Headline
 keywords = news.extract_keywords()
 words, counts = zip(*keywords)
@@ -48,6 +51,7 @@ plt.title("Most Frequent Keywords in Headlines")
 plt.xlabel("Frequency")
 plt.ylabel("Keyword")
 plt.show()
+
 # plot for Weekly trends
 time_df = news.analyze_time_series(freq='W')  
 plt.figure(figsize=(12, 6))
@@ -57,6 +61,7 @@ plt.xlabel("Week")
 plt.ylabel("Number of Articles")
 plt.grid(True)
 plt.show()
+
 # Extract and display top keywords
 print("Top Keywords:")
 keywords = news.extract_keywords()  # Changed from analyzer to news
