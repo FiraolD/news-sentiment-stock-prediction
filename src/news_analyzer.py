@@ -103,24 +103,27 @@ class NewsAnalyzer(BaseAnalyzer):
             raise
 
     def extract_topics(self, num_topics=5, num_words=10):
-        """Use LDA to extract topics from headlines"""
+        #Use LDA to extract topics from headlines
         try:
+            # Custom stopwords + NLTK defaults
             stop_words = set(stopwords.words('english'))
-            custom_stopwords = {'said', 'will', 'also', 'reuters', 'bloomberg'}
+            custom_stopwords = {'said', 'will', 'also', 'reuters', 'bloomberg', 'marketwatch', 'stock', 'stocks', 'report', 'target'}
             stop_words.update(custom_stopwords)
 
-            vectorizer = TfidfVectorizer(
+            # Vectorize headlines into word counts
+            vectorizer = CountVectorizer(
                 max_features=1000,
                 stop_words='english',
                 lowercase=True,
                 token_pattern=r'\b[a-zA-Z]{3,}\b'
             )
+            tf_matrix = vectorizer.fit_transform(self.data['headline'])
 
-            tfidf_matrix = vectorizer.fit_transform(self.data['headline'])
-
+            # Apply LDA
             lda = LatentDirichletAllocation(n_components=num_topics, random_state=42)
-            lda.fit(tfidf_matrix)
+            lda.fit(tf_matrix)
 
+            # Get feature names and topics
             feature_names = vectorizer.get_feature_names_out()
             topics = []
 
@@ -128,8 +131,8 @@ class NewsAnalyzer(BaseAnalyzer):
                 top_words = [feature_names[i] for i in topic.argsort()[-num_words:]]
                 topics.append(top_words)
 
-            self.top_topics = topics
-            return topics
+                self.top_topics = topics
+                return topics
 
         except Exception as e:
             self.logger.error(f"Topic extraction failed: {e}")
