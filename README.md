@@ -92,6 +92,6 @@ I used an object-oriented approach with a base class (`BaseAnalyzer`) and child 
 
 ## Task 2: Quantitative Analysis with TA-Lib and PyNance
 
-- Scripts: Contains `download_stock_data.py` to fetch stock prices.
-- src/stock_analyzer.py: Implements `StockAnalyzer` for calculating technical indicators.
-- notebooks/task-2_technical_indicators.ipynb: Notebook for visualizing indicators.
+
+- src/stock_analyzer.py: Loads Yfinance data for each ticker then Implements `StockAnalyzer` for calculating technical indicators.
+- notebooks/task-2_technical_indicators.py: Notebook for visualizing indicators.
