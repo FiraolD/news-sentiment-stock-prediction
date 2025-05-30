@@ -111,12 +111,12 @@ class NewsAnalyzer(BaseAnalyzer):
             stop_words.update(custom_stopwords)
 
             # Vectorize headlines into word counts
-            vectorizer = CountVectorizer(
+            vectorizer = TfidfVectorizer(
                 max_features=1000,
                 stop_words='english',
                 lowercase=True,
                 token_pattern=r'\b[a-zA-Z]{3,}\b'
-            )
+)
             tf_matrix = vectorizer.fit_transform(self.data['headline'])
 
             # Apply LDA
