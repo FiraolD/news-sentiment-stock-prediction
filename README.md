@@ -88,3 +88,10 @@ I used an object-oriented approach with a base class (`BaseAnalyzer`) and child 
 - Some headlines had missing or malformed text — handled gracefully using error handling.
 - Timezone conversion was necessary due to UTC-4 format.
 - Domain extraction helped group email-based publishers.
+
+
+## Task 2: Quantitative Analysis with TA-Lib and PyNance
+
+- Scripts: Contains `download_stock_data.py` to fetch stock prices.
+- src/stock_analyzer.py: Implements `StockAnalyzer` for calculating technical indicators.
+- notebooks/task-2_technical_indicators.ipynb: Notebook for visualizing indicators.
