@@ -8,3 +8,7 @@ statsmodels
 nltk
 textblob
 scikit-learn
+yfinance
+os
+src.stock_analyzer
+sys
