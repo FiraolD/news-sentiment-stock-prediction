@@ -3,6 +3,7 @@ import pandas as pd
 import talib
 import os
 import logging
+import matplotlib.pyplot as plt
 
 class StockAnalyzer:
     def __init__(self, ticker, data_folder="C:/Users/firao/Desktop/PYTHON PROJECTS\KIAM PROJECTS/news-sentiment-stock-prediction/data/yfinance_data"):
@@ -63,3 +64,55 @@ class StockAnalyzer:
         except Exception as e:
             self.logger.error(f"Failed to save processed data for {self.ticker}: {e}")
             raise
+        
+        import pandas as pd
+
+# Load a processed file
+df = pd.read_csv("data/processed_stock_prices/AAPL_processed.csv")
+print(df.head())
+
+def plot_moving_averages(data, ticker):
+    plt.figure(figsize=(12, 6))
+    plt.plot(data.index, data['Close'], label='Close Price', color='blue')
+    plt.plot(data.index, data['SMA_20'], label='20-Day SMA', color='orange')
+    plt.plot(data.index, data['SMA_50'], label='50-Day SMA', color='green')
+    plt.title(f"{ticker} Stock Price and Moving Averages")
+    plt.xlabel("Date")
+    plt.ylabel("Price")
+    plt.legend()
+    plt.grid(True)
+    plt.show()
+
+# Example for AAPL
+df = pd.read_csv("data/processed_stock_prices/AAPL_processed.csv", parse_dates=["Date"], index_col="Date")
+plot_moving_averages(df, "AAPL")
+
+def plot_rsi(data, ticker):
+    plt.figure(figsize=(12, 6))
+    plt.plot(data.index, data['RSI'], label='RSI', color='purple')
+    plt.axhline(70, color='red', linestyle='--', label='Overbought (70)')
+    plt.axhline(30, color='green', linestyle='--', label='Oversold (30)')
+    plt.title(f"{ticker} RSI Indicator")
+    plt.xlabel("Date")
+    plt.ylabel("RSI Value")
+    plt.legend()
+    plt.grid(True)
+    plt.show()
+
+# Example for AAPL
+plot_rsi(df, "AAPL")
+
+def plot_macd(data, ticker):
+    plt.figure(figsize=(12, 6))
+    plt.plot(data.index, data['MACD'], label='MACD', color='blue')
+    plt.plot(data.index, data['MACD_signal'], label='Signal Line', color='orange')
+    plt.bar(data.index, data['MACD_hist'], label='MACD Histogram', color='gray')
+    plt.title(f"{ticker} MACD Indicator")
+    plt.xlabel("Date")
+    plt.ylabel("MACD Values")
+    plt.legend()
+    plt.grid(True)
+    plt.show()
+
+# Example for AAPL
+plot_macd(df, "AAPL")
