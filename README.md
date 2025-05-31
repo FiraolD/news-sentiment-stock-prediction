@@ -69,11 +69,6 @@ To uncover hidden themes in financial news headlines, I applied **Latent Dirichl
 
 These topics provide insight into how different types of news may influence stock movement and support future correlation analysis.
 
-#### Challenges:
-- Some common words needed to be manually added to the stopword list.
-- Balancing topic specificity vs generality required tuning.
-- Short headlines made some topic inference harder than expected.
-
 ### Methodology
 I used an object-oriented approach with a base class (`BaseAnalyzer`) and child class (`NewsAnalyzer`) to modularize the code and ensure reusability. The analysis focused on understanding headline patterns, publisher behavior, keyword trends, and time-based frequency using NLP and statistical methods.
 
@@ -88,7 +83,9 @@ I used an object-oriented approach with a base class (`BaseAnalyzer`) and child 
 - Some headlines had missing or malformed text — handled gracefully using error handling.
 - Timezone conversion was necessary due to UTC-4 format.
 - Domain extraction helped group email-based publishers.
-
+- Some common words needed to be manually added to the stopword list.
+- Balancing topic specificity vs generality required tuning.
+- Short headlines made some topic inference harder than expected.
 
 ## Task 2: Quantitative Analysis with TA-Lib and PyNance
 
