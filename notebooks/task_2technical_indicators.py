@@ -11,9 +11,12 @@ logging.basicConfig(level=logging.INFO)
 
 
 def process_stock(ticker):
-    """
-    Process stock data for a given ticker.
-    """
+    task-1
+    #Process stock data for a given ticker.
+   
+    #Process stock data for a given ticker.
+    
+ main
     analyzer = StockAnalyzer(ticker)
     analyzer.load_data()
     analyzer.calculate_indicators()

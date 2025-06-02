@@ -10,11 +10,16 @@ class CorrelationAnalyzer(BaseAnalyzer):
         self.logger = logging.getLogger(self.__class__.__name__)
 
     def align_dates(self):
-        """
-        Align dates between news and stock data.
-        """
+        task-1
+        
+        #Align dates between news and stock data.
+        try:
+        
+        #Align dates between news and stock data.
+        
         try:
             # Normalize dates and merge datasets
+main
             merged_data = pd.merge(self.news_data, self.stock_data, left_on='date', right_on='Date')
             self.logger.info("Dates aligned successfully")
             return merged_data
@@ -23,11 +28,18 @@ class CorrelationAnalyzer(BaseAnalyzer):
             raise
 
     def calculate_correlation(self, sentiment_col, returns_col):
-        """
-        Calculate Pearson correlation between sentiment scores and stock returns.
-        """
+ task-1
+            #Calculate Pearson correlation between sentiment scores and stock returns.
+        
+        try:
+            correlation, p_value = pearsonr(self.news_data[sentiment_col], self.stock_data[returns_col])
+
+       
+        #Calculate Pearson correlation between sentiment scores and stock returns.
+
         try:
             correlation, p_value = pearsonr(merged_data[sentiment_col], merged_data[returns_col])
+ main
             self.logger.info(f"Correlation: {correlation}, P-value: {p_value}")
             return correlation, p_value
         except Exception as e:
