@@ -125,18 +125,27 @@ class NewsAnalyzer(BaseAnalyzer):
         except Exception as e:
             self.logger.error(f"Topic extraction failed: {e}")
             raise
+ task-1
 
     def perform_sentiment_analysis(self):
         
         #Perform sentiment analysis on the 'headline' column.
         #Adds 'polarity' and 'subjectivity' columns to the data.
         
+
+        def perform_sentiment_analysis(self):
+        """
+        Perform sentiment analysis on the 'headline' column.
+        Adds 'polarity' and 'subjectivity' columns to the data.
+        """
+ main
         try:
             self.data['polarity'] = self.data['headline'].apply(lambda x: TextBlob(x).sentiment.polarity)
             self.data['subjectivity'] = self.data['headline'].apply(lambda x: TextBlob(x).sentiment.subjectivity)
             self.logger.info("Sentiment analysis completed successfully")
         except Exception as e:
             self.logger.error(f"Error during sentiment analysis: {e}")
+ task-1
             raise
 
     def aggregate_sentiment_scores(self):
@@ -188,3 +197,6 @@ if __name__ == "__main__":
     aggregated_sentiment = news_analyzer.aggregate_sentiment_scores()
     print("\nAggregated Sentiment Scores:")
     print(aggregated_sentiment.head())
+
+            raise
+ main

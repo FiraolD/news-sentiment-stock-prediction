@@ -34,6 +34,7 @@ class StockAnalyzer:
         #Calculate technical indicators (SMA, RSI, MACD).
         
         try:
+    task-1
             # Calculate SMA (Simple Moving Average)
             self.data['SMA_20'] = talib.SMA(self.data['Close'], timeperiod=20)
             self.data['SMA_50'] = talib.SMA(self.data['Close'], timeperiod=50)
@@ -42,10 +43,21 @@ class StockAnalyzer:
             self.data['RSI'] = talib.RSI(self.data['Close'], timeperiod=14)
 
             # Calculate MACD (Moving Average Convergence Divergence)
+
+            # Moving Averages
+            self.data['SMA_20'] = talib.SMA(self.data['Close'], timeperiod=20)
+            self.data['SMA_50'] = talib.SMA(self.data['Close'], timeperiod=50)
+
+            # RSI (Relative Strength Index)
+            self.data['RSI'] = talib.RSI(self.data['Close'], timeperiod=14)
+
+            # MACD (Moving Average Convergence Divergence)
+   main
             self.data['MACD'], self.data['MACD_signal'], self.data['MACD_hist'] = talib.MACD(
                 self.data['Close'], fastperiod=12, slowperiod=26, signalperiod=9
             )
 
+  task-1
             # Drop rows with NaN values for indicators
             self.data.dropna(subset=['SMA_20', 'SMA_50', 'RSI', 'MACD'], inplace=True)
 
@@ -53,6 +65,13 @@ class StockAnalyzer:
         except Exception as e:
             self.logger.error(f"Error calculating indicators: {e}")
             raise
+
+            self.logger.info(f"Calculated technical indicators for {self.ticker}")
+        except Exception as e:
+            self.logger.error(f"Error calculating indicators for {self.ticker}: {e}")
+            raise
+
+ main
     def save_processed_data(self, output_folder="data/processed_stock_prices"):
     
         #Save processed data to a new CSV file.
@@ -117,6 +136,7 @@ def plot_macd(data, ticker):
     plt.show()
 
 # Example for AAPL
+ task-1
 plot_macd(df, "AAPL")
 
 # Load a processed file
@@ -218,3 +238,6 @@ def plot_macd(data, ticker):
 
 # Example for AMZN
 plot_macd(df, "AMZN")
+
+plot_macd(df, "AAPL")
+ main
