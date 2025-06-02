@@ -8,3 +8,4 @@ statsmodels
 nltk
 textblob
 scikit-learn
+e

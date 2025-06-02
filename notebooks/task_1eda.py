@@ -1,6 +1,4 @@
 # src/news_analyzer.py
-import sys
-sys.path.append("C:/Users/firao/Desktop/PYTHON PROJECTS/KIAM PROJECTS/news-sentiment-stock-prediction")
 import pandas as pd
 import logging
 from collections import Counter
@@ -22,7 +20,7 @@ class NewsAnalyzer(BaseAnalyzer):
         nltk.download('stopwords')
 
     def load_data(self):
-        #Load and preprocess the financial news dataset.
+        """Load and preprocess the financial news dataset."""
         try:
             self.data = pd.read_csv(self.filepath)
             self._preprocess()
@@ -35,7 +33,7 @@ class NewsAnalyzer(BaseAnalyzer):
             raise
 
     def _preprocess(self):
-        #Basic preprocessing of news headlines and dates.
+        """Basic preprocessing of news headlines and dates."""
         try:
             # Ensure required columns exist
             required_columns = ['headline', 'publisher', 'date', 'stock']
@@ -59,7 +57,7 @@ class NewsAnalyzer(BaseAnalyzer):
             raise
 
     def get_top_publishers(self, top_n=10):
-        #Get most active publishers.
+        """Get most active publishers."""
         try:
             self.top_publishers = self.data['publisher_domain'].value_counts().head(top_n)
             return self.top_publishers
@@ -68,7 +66,7 @@ class NewsAnalyzer(BaseAnalyzer):
             raise
 
     def analyze_headline_lengths(self):
-        #Analyze headline length distribution.
+        """Analyze headline length distribution."""
         try:
             return self.data['headline_length'].describe()
         except Exception as e:
@@ -76,7 +74,7 @@ class NewsAnalyzer(BaseAnalyzer):
             raise
 
     def extract_keywords(self, top_n=10):
-        #Extract basic keywords from headlines.
+        """Extract basic keywords from headlines."""
         try:
             all_words = []
             for headline in self.data['headline']:
@@ -91,7 +89,7 @@ class NewsAnalyzer(BaseAnalyzer):
             raise
 
     def extract_topics(self, num_topics=5, num_words=10):
-        #Use LDA to extract topics from headlines.
+        """Use LDA to extract topics from headlines."""
         try:
             # Custom stopwords + NLTK defaults
             stop_words = set(stopwords.words('english'))
@@ -127,10 +125,10 @@ class NewsAnalyzer(BaseAnalyzer):
             raise
 
     def perform_sentiment_analysis(self):
-        
-        #Perform sentiment analysis on the 'headline' column.
-        #Adds 'polarity' and 'subjectivity' columns to the data.
-        
+        """
+        Perform sentiment analysis on the 'headline' column.
+        Adds 'polarity' and 'subjectivity' columns to the data.
+        """
         try:
             self.data['polarity'] = self.data['headline'].apply(lambda x: TextBlob(x).sentiment.polarity)
             self.data['subjectivity'] = self.data['headline'].apply(lambda x: TextBlob(x).sentiment.subjectivity)
@@ -140,8 +138,9 @@ class NewsAnalyzer(BaseAnalyzer):
             raise
 
     def aggregate_sentiment_scores(self):
-        #Aggregate sentiment scores by date.
-        
+        """
+        Aggregate sentiment scores by date.
+        """
         try:
             aggregated_data = self.data.groupby('date').agg({
                 'polarity': 'mean',
@@ -160,7 +159,7 @@ if __name__ == "__main__":
     logging.basicConfig(level=logging.INFO, format="%(asctime)s - %(levelname)s - %(message)s")
 
     # Filepath to the news dataset
-    filepath = "C:/Users/firao/Desktop/PYTHON PROJECTS/KIAM PROJECTS/news-sentiment-stock-prediction/data/raw_analyst_ratings/raw_analyst_ratings.csv"
+    filepath = "../data/raw_analyst_ratings.csv"
 
     # Instantiate NewsAnalyzer
     news_analyzer = NewsAnalyzer(filepath)
