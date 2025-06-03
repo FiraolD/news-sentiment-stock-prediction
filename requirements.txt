@@ -11,4 +11,8 @@ scikit-learn
 yfinance
 os
 src.stock_analyzer
+src.base_analyzer
+src.news_analyzer
+src.correlation_analyzer
 sys
+src
